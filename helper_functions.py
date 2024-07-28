@@ -12,11 +12,6 @@ def walk_directory(path):
     print(f"There are {len(dirnames)} directories and {len(filenames)} images in {dirpath}")
 
 
-import random
-import matplotlib.pyplot as plt
-from matplotlib.image import imread
-import os
-
 def random_images(path, class_name=None):
   '''
   Prerequisite Libraries: os, random, matplotlib.pyplot and  matplotlib.image
