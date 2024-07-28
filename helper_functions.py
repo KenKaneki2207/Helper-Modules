@@ -38,3 +38,29 @@ def random_images(path, class_name=None):
   plt.imshow(imread(f"{path}/{title}/{img}"))
   plt.axis("off")
   plt.title(title)
+
+
+def plot_history(history):
+
+  '''
+  Prerequisite : matplotlib.pyplot as plt
+
+  Input : history --> history variable.
+
+  Output : Loss and Accuracy curve for training and validation.
+  '''
+
+  t_loss = history.history['loss']
+  v_loss = history.history['val_loss']
+
+  t_acc = history.history['accuracy']
+  v_acc = history.history['val_accuracy']
+
+  plt.title('Loss Curve')
+  plt.plot(t_loss)
+  plt.plot(v_loss)
+  plt.figure()
+
+  plt.title('Accuracy Curve')
+  plt.plot(t_acc)
+  plt.plot(v_acc)
