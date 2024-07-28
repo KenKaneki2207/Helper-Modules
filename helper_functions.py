@@ -64,3 +64,25 @@ def plot_history(history):
   plt.title('Accuracy Curve')
   plt.plot(t_acc)
   plt.plot(v_acc)
+
+
+def confusion_matrix_graph(cm, labels, shape, color=plt.cm.Blues):
+
+  '''
+  Pre-requisite : confusion_matrix, ConfusionMatrixDisplay functions from sklearn.metrics
+    'from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay'
+
+  Inputs :  cm --> confusion matrix,
+            labels --> labels for the x-axis
+            shape --> shape of the figure.
+            cmap --> plt.cm.Blues(default, you can choose other colors from 
+            https://matplotlib.org/stable/users/explain/colors/colormaps.html)
+
+  Outputs : Display's a besutiful confusion matrix.
+
+  '''
+
+  cm_display = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels = labels)
+  
+  fig, ax = plt.subplots(figsize=shape)
+  cm_display.plot(ax=ax, cmap=color, xticks_rotation='vertical')
