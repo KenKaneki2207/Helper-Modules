@@ -72,23 +72,42 @@ def plot_history(history):
   plt.plot(v_acc)
 
 
-def confusion_matrix_graph(cm, labels, shape, color=plt.cm.Blues):
+def create_confusion_matrix(test_data, model, shape, color=plt.cm.Blues):
 
   '''
   Pre-requisite : confusion_matrix, ConfusionMatrixDisplay functions from sklearn.metrics
     'from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay'
 
-  Inputs :  cm --> confusion matrix,
-            labels --> labels for the x-axis
+  Inputs :  test_data --> test_data object,
+            model --> Model used for prediction.
             shape --> shape of the figure.
-            cmap --> plt.cm.Blues(default, you can choose other colors from 
+            color --> plt.cm.Blues(default, you can choose other colors from 
             https://matplotlib.org/stable/users/explain/colors/colormaps.html)
 
   Outputs : Display's a besutiful confusion matrix.
 
   '''
-
-  cm_display = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels = labels)
   
+  # Test Labels will contain the true values
+  display_labels = test_data.class_names
+
+  test_labels = []
+  for _,labels in test_data.unbatch():
+    test_labels.append(tf.argmax(labels).numpy())
+  print('True Labels :\n', test_labels[:10])
+  print('The shape of test_labels :', len(test_labels))
+
+  # Now lets find the predicted values
+  pred_labels = []
+  preds = model.predict(test_data)
+  for pred in preds:
+    pred_labels.append(tf.argmax(pred).numpy())
+  print('Predicted Labels :\n', pred_labels[:10])
+  print('The shape of predicted_labels :', len(pred_labels))
+
+  # Create Confusion Matrix
+  cm = confusion_matrix(y_true=test_labels, y_pred=pred_labels)
+
+  # Display the confusion matrix
   fig, ax = plt.subplots(figsize=shape)
-  cm_display.plot(ax=ax, cmap=color, xticks_rotation='vertical')
+  ConfusionMatrixDisplay(cm, display_labels=display_labels).plot(ax=ax, cmap=color, xticks_rotation='vertical')
