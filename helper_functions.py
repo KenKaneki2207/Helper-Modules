@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.image import imread
 import random
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import tensorflow as tf
 
 def walk_directory(path):
   '''
