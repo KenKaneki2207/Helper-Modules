@@ -112,3 +112,35 @@ def create_confusion_matrix(test_data, model, shape, color=plt.cm.Blues):
   # Display the confusion matrix
   fig, ax = plt.subplots(figsize=shape)
   ConfusionMatrixDisplay(cm, display_labels=display_labels).plot(ax=ax, cmap=color, xticks_rotation='vertical')
+
+
+def compare_model_results(result_1, result_2, label_1, label_2):
+
+  """
+  Description : Returns the comparison of the evaluation metrics of the 2 models.
+
+  Parameters : 
+  result_1 --> Results of the model 1 stored in dictionary format.
+
+  result_2 --> Results of the model 2 stored in dictionary format
+
+  label_1 --> label for the model 1
+
+  label_2 --> label for the model 2
+  """
+  X = list(result_1.keys())
+  model_0 = list(result_1.values())
+  model_1 = list(result_2.values())
+
+  X_axis = np.arange(len(X)) 
+  print(X_axis)
+
+  plt.bar(X_axis - 0.2 , model_0, 0.4, label = label_1) 
+  plt.bar(X_axis + 0.2 , model_1, 0.4, label = label_2) 
+
+  plt.xticks(X_axis, X) 
+  plt.xlabel("Evaluation Metrics") 
+  plt.ylabel("Evaluation Results") 
+  plt.title("Results for each model") 
+  plt.legend(loc="center") 
+  plt.show() 
