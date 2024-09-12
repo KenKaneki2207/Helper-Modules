@@ -144,3 +144,34 @@ def compare_model_results(result_1, result_2, label_1, label_2):
   plt.title("Results for each model") 
   plt.legend(loc="center") 
   plt.show() 
+
+
+from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score
+
+def evaluation(true_labels, pred_labels):
+
+  '''
+  Description : 
+    It returns the accuracy, f1, precision, recall in dictionary format.
+  accuracy --> The percentage of correctly predicted instances out of the total instances.
+  f1 --> The harmonic mean of precision and recall. It is useful when you need a balance between precision and recall.
+  precision --> The number of correctly predicted positive observations divided by the total predicted positives. It indicates how many of the predicted positives are actually positive.
+  recall --> The number of correctly predicted positive observations divided by the total actual positives. It indicates how many of the actual positives are captured by the model.
+
+
+  Prerequisite : from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score
+
+
+  Input : 
+    true_labels --> true labels used for evaluations, 
+    pred_labels --> Predictions made by your model
+
+  Output : 
+    It returns the accuracy, f1, precision, recall in dictionary format.    
+  
+  '''
+
+  return {'accuracy' : accuracy_score(true_labels, pred_labels), 
+          'f1' : f1_score(true_labels, pred_labels),
+          'precision' : precision_score(true_labels, pred_labels),
+          'recall' : recall_score(true_labels, pred_labels)}
