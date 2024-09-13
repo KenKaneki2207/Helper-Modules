@@ -175,3 +175,43 @@ def evaluation(true_labels, pred_labels):
           'f1' : f1_score(true_labels, pred_labels),
           'precision' : precision_score(true_labels, pred_labels),
           'recall' : recall_score(true_labels, pred_labels)}
+
+
+import re
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+def text_preprocessing(text):
+    
+    '''
+    Description : Text_preprocessing : 
+                lowering, removing characteres,urls, tokenize the text, removing stopwords
+    
+    Prerequiste : import re
+                  from nltk.corpus import stopwords
+                  from nltk.tokenize import word_tokenize
+                  
+    Input : text
+    
+    Ouptut : transformed text
+    '''
+    
+    #lower the text
+    text = text.lower()
+    
+    # Removing all the characters except strings
+    text = re.sub('[^a-z ]','', text)
+    
+    # Remove the urls
+    text = re.sub('http\S+|www.\S+','',text)
+    
+    # Tokenizing
+    words = word_tokenize(text)
+    
+    # removing stopwords
+    filtered_words = [word for word in words if word not in stopwords.words('english')]
+    
+    # concating the filtered words
+    text = ' '.join([word for word in filtered_words])
+    
+    return text
