@@ -460,13 +460,13 @@ def expand_abbrevations(text):
 
   Output : Expansion of abbreviations.
   '''
-    keys = abbreviations.keys()
-    words = text.split()
-    for i in range(len(words)):
-        if words[i] in keys:
-            words[i] = abbreviations[words[i]]
+  keys = abbreviations.keys()
+  words = text.split()
+  for i in range(len(words)):
+    if words[i] in keys:
+      words[i] = abbreviations[words[i]]
     
     # concating the words
-    text = ' '.join([word for word in words])
+  text = ' '.join([word for word in words])
     
-    return text
+  return text
