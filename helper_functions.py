@@ -65,7 +65,7 @@ def plot_history(history):
 
   plt.title('Loss Curve')
   plt.plot(t_loss, label="Training")
-  plt.plot(v_loss, label="Testing)
+  plt.plot(v_loss, label="Testing")
   plt.legend()
   plt.figure()
 
