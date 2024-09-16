@@ -64,13 +64,15 @@ def plot_history(history):
   v_acc = history.history['val_accuracy']
 
   plt.title('Loss Curve')
-  plt.plot(t_loss)
-  plt.plot(v_loss)
+  plt.plot(t_loss, label="Training")
+  plt.plot(v_loss, label="Testing)
+  plt.legend()
   plt.figure()
 
   plt.title('Accuracy Curve')
-  plt.plot(t_acc)
-  plt.plot(v_acc)
+  plt.plot(t_acc, label="Training")
+  plt.plot(v_acc, label="Testing")
+  plt.legend()
 
 
 def create_confusion_matrix(test_data, model, shape, color=plt.cm.Blues):
